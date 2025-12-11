@@ -1,6 +1,6 @@
 
 # -------- Base image: stable Python 3.11 on Debian slim --------
-FROM python:3.11-slim AS base
+FROM python:3.15.0a1-slim AS base
 
 # Prevent .pyc files & enable unbuffered logs
 ENV PYTHONDONTWRITEBYTECODE=1 \
@@ -44,4 +44,4 @@ HEALTHCHECK --interval=30s --timeout=5s --start-period=20s --retries=3 \
 # Use Gunicorn (production-grade) with 2 workers; adjust module to your project's WSGI
 # Replace 'calapp.wsgi:application' if your project name differs
 #CMD ["gunicorn", "calapp.wsgi:application", "--bind", "0.0.0.0:8000", "--workers", "2", "--threads", "2"]
-CMD ["gunicorn", "soapmini.wsgi:application", "--bind", "0.0.0.0:8000", "--workers", "2", "--threads", "2"]
+CMD ["gunicorn", "soapmini.wsgi:application", "--bind", "0.0.0.0:8000", "--workers", "2", "--threads", "2"] 
